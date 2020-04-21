@@ -12,6 +12,7 @@ import {
   ViroNode,
   ViroSpotLight,
   ViroText,
+  ViroButton,
 } from 'react-viro';
 
 import { StyleSheet, Button } from 'react-native';
@@ -35,6 +36,7 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
+        <ViroOrbitCamera position={[0, 0, -0]} focalPoint={[0, 0, -1.15]} />
         <ViroNode position={[0, -1, 0]} dragType='FixedToWorld' onDrag={() => {}}>
           {/* <Viro3DObject
             source={require('./res/emoji_smile/emoji_smile.vrx')}
@@ -58,31 +60,21 @@ export default class HelloWorldSceneAR extends Component {
               require('./look6/FCL2-PSL002-00_brownbaby.jpg'),
               require('./look6/FCL2-PSL002-00.png'),
             ]}
-            position={[1, 0.5, 0]}
-            scale={[1, 1, 1]}
+            position={[0, 4, 1.1]}
+            scale={[0.05, 0.05, 0.05]}
             type='VRX'
             onLoadStart={this._onLoadStart}
             onLoadEnd={this._onLoadEnd}
             onError={this._onError}
           />
         </ViroNode>
-
-        <ViroBox position={[0, -0.5, -1]} scale={[0.3, 0.3, 0.1]} materials={['grid']} />
-        <ViroAmbientLight color={'#aaaaaa'} />
-        <ViroSpotLight
-          innerAngle={5}
-          outerAngle={90}
-          direction={[0, -1, -0.2]}
-          position={[0, 3, 1]}
-          color='#ffffff'
-          castsShadow={true}
-        />
-        <ViroText
+        */}
+        {/* <ViroText
           text={this.state.text}
           scale={[0.5, 0.5, 0.5]}
           position={[0, 0, -1]}
           style={styles.helloWorldTextStyle}
-        />
+        /> */}
       </ViroARScene>
     );
   }

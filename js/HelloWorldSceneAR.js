@@ -11,8 +11,10 @@ import {
   ViroMaterials,
   ViroNode,
   ViroSpotLight,
+  ViroOmniLight,
   ViroText,
   ViroButton,
+  ViroDirectionalLight,
 } from 'react-viro';
 
 import { StyleSheet, Button } from 'react-native';
@@ -36,7 +38,6 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <ViroOrbitCamera position={[0, 0, -0]} focalPoint={[0, 0, -1.15]} />
         <ViroNode position={[0, -1, 0]} dragType='FixedToWorld' onDrag={() => {}}>
           {/* <Viro3DObject
             source={require('./res/emoji_smile/emoji_smile.vrx')}
@@ -59,19 +60,61 @@ export default class HelloWorldSceneAR extends Component {
               require('./look6/FCL1-PSS003-00_NORMAL.png'),
               require('./look6/FCL2-PSL002-00_brownbaby.jpg'),
               require('./look6/FCL2-PSL002-00.png'),
+              require('./look6/march12_fbx_look6_v5.fbm/2.3cm_Edit.jpg'),
+              require('./look6/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+              require('./look6/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_NORMAL.png'),
+              require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
             ]}
-            position={[0, 4, 1.1]}
-            scale={[0.05, 0.05, 0.05]}
+            position={[0, -0.5, -1]}
+            scale={[0.001, 0.001, 0.001]}
             type='VRX'
             onLoadStart={this._onLoadStart}
             onLoadEnd={this._onLoadEnd}
             onError={this._onError}
+            materials={['earth', 'moon']}
+          />
+          <ViroSpotLight
+            position={[-1, -1, 0]}
+            color='#ffffff'
+            direction={[0, 0, -1]}
+            attenuationStartDistance={5}
+            attenuationEndDistance={10}
+            innerAngle={5}
+            outerAngle={50}
+          />
+          <ViroSpotLight
+            position={[0, 1, 0]}
+            color='#ffffff'
+            direction={[0, 0, -1]}
+            attenuationStartDistance={5}
+            attenuationEndDistance={10}
+            innerAngle={5}
+            outerAngle={50}
+          />
+          <ViroSpotLight
+            position={[-1, 0, 0]}
+            color='#ffffff'
+            direction={[0, 0, -1]}
+            attenuationStartDistance={5}
+            attenuationEndDistance={10}
+            innerAngle={5}
+            outerAngle={50}
+          />
+          <ViroSpotLight
+            position={[1, 1, 0]}
+            color='#ffffff'
+            direction={[0, 0, -1]}
+            attenuationStartDistance={5}
+            attenuationEndDistance={10}
+            innerAngle={5}
+            outerAngle={50}
           />
         </ViroNode>
-        */}
-        {/* <ViroText
+        {/* <ViroAmbientLight color='#ffffff' /> */}
+        {/* <ViroBox position={[0, -0.5, -1]} scale={[0.3, 0.3, 0.1]} materials={['grid']} />
+        <ViroText
           text={this.state.text}
-          scale={[0.5, 0.5, 0.5]}
+          scale={[0.1, 0.1, 0.1]}
           position={[0, 0, -1]}
           style={styles.helloWorldTextStyle}
         /> */}
@@ -118,6 +161,16 @@ var styles = StyleSheet.create({
 ViroMaterials.createMaterials({
   grid: {
     diffuseTexture: require('./res/grid_bg.jpg'),
+  },
+  earth: {
+    shininess: 2.0,
+    lightingModel: 'Phong',
+    diffuseTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_NORMAL.png'),
+  },
+  moon: {
+    shininess: 2.0,
+    lightingModel: 'Phong',
+    diffuseTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
   },
 });
 

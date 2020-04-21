@@ -52,37 +52,23 @@ export default class HelloWorldSceneAR extends Component {
           /> */}
           <Viro3DObject
             source={require('./look6/march12_fbx_look6_v5.vrx')}
-            resources={[
-              require('./look6/2.3cm_Edit.jpg'),
-              require('./look6/2.3cm_Edit.png'),
-              require('./look6/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-              require('./look6/FCL1-PSS003-00_DIFFUSE.jpg'),
-              require('./look6/FCL1-PSS003-00_NORMAL.png'),
-              require('./look6/FCL2-PSL002-00_brownbaby.jpg'),
-              require('./look6/FCL2-PSL002-00.png'),
-              require('./look6/march12_fbx_look6_v5.fbm/2.3cm_Edit.jpg'),
-              require('./look6/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-              require('./look6/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_NORMAL.png'),
-              require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
-            ]}
-            position={[0, -0.5, -1]}
-            scale={[0.001, 0.001, 0.001]}
+            position={[0, 0, -1]}
+            scale={[0.0006, 0.0006, 0.0006]}
             type='VRX'
             onLoadStart={this._onLoadStart}
             onLoadEnd={this._onLoadEnd}
             onError={this._onError}
-            materials={['earth', 'moon']}
+            materials={[
+              'Silk_Duchess_Satin_FCL1PSS003_FRONT_333737',
+              'Silk_Duchess_Satin_FCL1PSS003 opaque_FRONT_922081',
+              'Cowhide_Leather_FCL2PSL002_FRONT_1033776',
+            ]}
           />
-          <ViroSpotLight
-            position={[-1, -1, 0]}
-            color='#ffffff'
-            direction={[0, 0, -1]}
-            attenuationStartDistance={5}
-            attenuationEndDistance={10}
-            innerAngle={5}
-            outerAngle={50}
-          />
-          <ViroSpotLight
+          <ViroDirectionalLight color='#ffffff' direction={[0, -1, 0]} notes='From Top' />
+          <ViroDirectionalLight color='#ffffff' direction={[-1, 0, 0]} notes='From Right' />
+          <ViroDirectionalLight color='#ffffff' direction={[1, 0, 0]} notes='From Left' />
+          <ViroDirectionalLight color='#ffffff' direction={[0, 0, -1]} notes='From Front' />
+          {/* <ViroSpotLight
             position={[0, 1, 0]}
             color='#ffffff'
             direction={[0, 0, -1]}
@@ -92,7 +78,7 @@ export default class HelloWorldSceneAR extends Component {
             outerAngle={50}
           />
           <ViroSpotLight
-            position={[-1, 0, 0]}
+            position={[-1, -1, 0]}
             color='#ffffff'
             direction={[0, 0, -1]}
             attenuationStartDistance={5}
@@ -108,7 +94,7 @@ export default class HelloWorldSceneAR extends Component {
             attenuationEndDistance={10}
             innerAngle={5}
             outerAngle={50}
-          />
+          /> */}
         </ViroNode>
         {/* <ViroAmbientLight color='#ffffff' /> */}
         {/* <ViroBox position={[0, -0.5, -1]} scale={[0.3, 0.3, 0.1]} materials={['grid']} />
@@ -159,19 +145,37 @@ var styles = StyleSheet.create({
 });
 
 ViroMaterials.createMaterials({
-  grid: {
-    diffuseTexture: require('./res/grid_bg.jpg'),
-  },
-  earth: {
+  // grid: {
+  //   diffuseTexture: require('./res/grid_bg.jpg'),
+  // },
+  Silk_Duchess_Satin_FCL1PSS003_FRONT_333737: {
     shininess: 2.0,
-    lightingModel: 'Phong',
     diffuseTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_NORMAL.png'),
   },
-  moon: {
+  'Silk_Duchess_Satin_FCL1PSS003 opaque_FRONT_922081': {
     shininess: 2.0,
-    lightingModel: 'Phong',
+    specularTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
     diffuseTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
   },
+  Cowhide_Leather_FCL2PSL002_FRONT_1033776: {
+    shininess: 2.0,
+    diffuseTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
+    specularTexture: require('./look6/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
+  },
+  // Name: Silk_Duchess_Satin_FCL1PSS003_FRONT_333737
+  // NO SHINE
+  // Name: Silk_Duchess_Satin_FCL1PSS003 opaque_FRONT_922081
+  // TRANSPARENCY - 59%
+  // REFLECTANCE (SPECULAR) - WIDTH 51%, SPECULAR STRENGTH 7.5%
+  // ENVIRONMENT - 100%
+  // NORMAL - 100%
+  // Name: Cowhide_Leather_FCL2PSL002_FRONT_1033776
+  // REFLECTANCE (SPECULAR) - WIDTH 30%, SPECULAR STRENGTH 31.2%
+  // ENVIRONMENT - 100%
+  // Name: Material3579
+  // NO SHINE
+  // Name: PT_FABRIC_FRONT_3586
+  // ENVIRONMENT - 100%
 });
 
 module.exports = HelloWorldSceneAR;

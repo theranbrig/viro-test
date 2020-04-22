@@ -15,6 +15,7 @@ import {
   ViroText,
   ViroButton,
   ViroDirectionalLight,
+  ViroAnimations,
 } from 'react-viro';
 
 import { StyleSheet, Button } from 'react-native';
@@ -51,17 +52,15 @@ export default class HelloWorldSceneAR extends Component {
             type='VRX'
           /> */}
           <Viro3DObject
-            source={require('./look6/march12_fbx_look6_v5.vrx')}
+            source={require('./look7/jacket.vrx')}
             position={[0, -1, -1]}
-            scale={[0.0006, 0.0006, 0.0006]}
+            scale={[0.001, 0.001, 0.001]}
             type='VRX'
             onLoadStart={this._onLoadStart}
             onLoadEnd={this._onLoadEnd}
             onError={this._onError}
-            materials={[
-              'Silk_Duchess_Satin_FCL1PSS003_FRONT_333737',
-              'Cowhide_Leather_FCL2PSL002_FRONT_1033776',
-            ]}
+            materials={['buttonhole', 'cowhide']}
+            animation={{ name: 'rotate', run: true, loop: true }}
           />
           <ViroSpotLight
             innerAngle={5}
@@ -71,19 +70,19 @@ export default class HelloWorldSceneAR extends Component {
             color='#ffffff'
             castsShadow={true}
           />
-          <ViroDirectionalLight
+          <ViroSpotLight
             castsShadow={true}
             color='#ffffff'
             direction={[0, -1, 0]}
             notes='From Top'
           />
-          <ViroDirectionalLight
+          <ViroSpotLight
             castsShadow={true}
             color='#ffffff'
             direction={[-1, 0, 0]}
             notes='From Right'
           />
-          <ViroDirectionalLight
+          <ViroSpotLight
             castsShadow={true}
             color='#ffffff'
             direction={[1, 0, 0]}
@@ -124,7 +123,12 @@ export default class HelloWorldSceneAR extends Component {
           /> */}
         </ViroNode>
         {/* <ViroAmbientLight color='#ffffff' /> */}
-        {/* <ViroBox position={[0, -0.5, -1]} scale={[0.3, 0.3, 0.1]} materials={['grid']} /> */}
+        <ViroBox
+          position={[0, -0.5, -1]}
+          scale={[0.3, 0.3, 0.1]}
+          materials={['cowhide']}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
         {this.props.showText && (
           <ViroText
             text={this.state.text}
@@ -171,39 +175,53 @@ var styles = StyleSheet.create({
     borderRadius: 10,
     color: 'red',
   },
+  //    Primitive count for material 0: 37452"
+  //    Lambert material"
+  //       Opacity set to 1.000000"
+  //       Texture index 0, texture type [DiffuseColor], texture name [silk1.jpg]"
+  //    Primitive count for material 1: 136"
+  //    Lambert material"
+  //       Opacity set to 1.000000"
+  //       Texture index 0, texture type [DiffuseColor], texture name [buttonhole.jpg]"
+  //       Texture index 4, texture type [AmbientColor], texture name [2.3cm_Edit.jpg]"
+  //    Primitive count for material 2: 3750"
+  //    Phong material"
+  //       Opacity set to 0.758100"
+  //       Texture index 0, texture type [DiffuseColor], texture name [silk2.jpg]"
+  //       Texture index 4, texture type [AmbientColor], texture name [FCL1-PSS003-00_DIFFUSE_redred.jpg]"
+  //       Texture index 9, texture type [NormalMap], texture name [FCL1-PSS003-00_NORMAL.png]"
+  //    Primitive count for material 3: 111610"
+  //    Phong material"
+  //       Opacity set to 1.000000"
+  //       Texture index 0, texture type [DiffuseColor], texture name [cowhide1.jpg]"
+  //       Texture index 4, texture type [AmbientColor], texture name [FCL2-PSL002-00_brownbaby.jpg]"
+  //    Primitive count for material 4: 17844"
+  //    Lambert material"
+  //       Opacity set to 1.000000"
 });
 
 ViroMaterials.createMaterials({
-  // grid: {
-  //   diffuseTexture: require('./res/grid_bg.jpg'),
-  // },
-  Silk_Duchess_Satin_FCL1PSS003_FRONT_333737: {
+  buttonhole: {
     lightingModel: 'PBR',
-    shininess: 1.0,
-    specularTexture: require('./look6/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-    diffuseTexture: require('./look6/FCL1-PSS003-00_DIFFUSE.jpg'),
+    shininess: 4.0,
+    normalTexture: require('./look7/buttonhole.jpg'),
+    diffuseTexture: require('./look7/2.3cm_Edit.png'),
   },
+  cowhide: {
+    lightingModel: 'PBR',
+    shininess: 4.0,
+    normalTexture: require('./look7/cowhide1.jpg'),
+    diffuseTexture: require('./look7/cowhide1Diffuse.png'),
+  },
+});
 
-  Cowhide_Leather_FCL2PSL002_FRONT_1033776: {
-    lightingModel: 'PBR',
-    shininess: 1.0,
-    diffuseTexture: require('./look6/FCL2-PSL002-00.png'),
-    specularTexture: require('./look6/FCL2-PSL002-00_brownbaby.jpg'),
+ViroAnimations.registerAnimations({
+  rotate: {
+    properties: {
+      rotateY: '+=90',
+    },
+    duration: 2500, //.25 seconds
   },
-  // Name: Silk_Duchess_Satin_FCL1PSS003_FRONT_333737
-  // NO SHINE
-  // Name: Silk_Duchess_Satin_FCL1PSS003 opaque_FRONT_922081
-  // TRANSPARENCY - 59%
-  // REFLECTANCE (SPECULAR) - WIDTH 51%, SPECULAR STRENGTH 7.5%
-  // ENVIRONMENT - 100%
-  // NORMAL - 100%
-  // Name: Cowhide_Leather_FCL2PSL002_FRONT_1033776
-  // REFLECTANCE (SPECULAR) - WIDTH 30%, SPECULAR STRENGTH 31.2%
-  // ENVIRONMENT - 100%
-  // Name: Material3579
-  // NO SHINE
-  // Name: PT_FABRIC_FRONT_3586
-  // ENVIRONMENT - 100%
 });
 
 module.exports = HelloWorldSceneAR;

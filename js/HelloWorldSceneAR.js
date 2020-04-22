@@ -62,69 +62,38 @@ export default class HelloWorldSceneAR extends Component {
             materials={['buttonhole', 'cowhide']}
             animation={{ name: 'rotate', run: true, loop: true }}
           />
-          <ViroSpotLight
-            innerAngle={5}
-            outerAngle={90}
-            direction={[0, -1, -0.2]}
-            position={[0, 3, 1]}
-            color='#ffffff'
-            castsShadow={true}
+          <ViroOmniLight
+            intensity={1000}
+            position={[-10, 20, 1]}
+            color={'#FFFFFF'}
+            attenuationStartDistance={20}
+            attenuationEndDistance={30}
           />
-          <ViroSpotLight
-            castsShadow={true}
-            color='#ffffff'
-            direction={[0, -1, 0]}
-            notes='From Top'
+          <ViroOmniLight
+            intensity={1000}
+            position={[10, 20, 1]}
+            color={'#FFFFFF'}
+            attenuationStartDistance={20}
+            attenuationEndDistance={30}
           />
-          <ViroSpotLight
-            castsShadow={true}
-            color='#ffffff'
-            direction={[-1, 0, 0]}
-            notes='From Right'
+          <ViroOmniLight
+            intensity={1000}
+            position={[-10, -10, 1]}
+            color={'#FFFFFF'}
+            attenuationStartDistance={20}
+            attenuationEndDistance={30}
           />
-          <ViroSpotLight
-            castsShadow={true}
-            color='#ffffff'
-            direction={[1, 0, 0]}
-            notes='From Left'
+          <ViroOmniLight
+            intensity={1000}
+            position={[10, -10, 1]}
+            color={'#FFFFFF'}
+            attenuationStartDistance={20}
+            attenuationEndDistance={30}
           />
-          <ViroDirectionalLight
-            castsShadow={true}
-            color='#ffffff'
-            direction={[0, 0, -1]}
-            notes='From Front'
-          />
-          {/* <ViroSpotLight
-            position={[0, 1, 0]}
-            color='#ffffff'
-            direction={[0, 0, -1]}
-            attenuationStartDistance={5}
-            attenuationEndDistance={10}
-            innerAngle={5}
-            outerAngle={50}
-          />
-          <ViroSpotLight
-            position={[-1, -1, 0]}
-            color='#ffffff'
-            direction={[0, 0, -1]}
-            attenuationStartDistance={5}
-            attenuationEndDistance={10}
-            innerAngle={5}
-            outerAngle={50}
-          />
-          <ViroSpotLight
-            position={[1, 1, 0]}
-            color='#ffffff'
-            direction={[0, 0, -1]}
-            attenuationStartDistance={5}
-            attenuationEndDistance={10}
-            innerAngle={5}
-            outerAngle={50}
-          /> */}
         </ViroNode>
-        {/* <ViroAmbientLight color='#ffffff' /> */}
+
         <ViroBox
-          position={[0, -0.5, -1]}
+          position={[0, 0, -1.5]}
           scale={[0.3, 0.3, 0.1]}
           materials={['cowhide']}
           animation={{ name: 'rotate', run: true, loop: true }}
@@ -209,9 +178,9 @@ ViroMaterials.createMaterials({
   },
   cowhide: {
     lightingModel: 'PBR',
-    shininess: 4.0,
-    normalTexture: require('./look7/cowhide1.jpg'),
-    diffuseTexture: require('./look7/cowhide1Diffuse.png'),
+    shininess: 100.0,
+    diffuseTexture: require('./look7/cowhide1.jpg'),
+    specularTexture: require('./look7/cowhide1.jpg'),
   },
 });
 

@@ -40,17 +40,6 @@ export default class HelloWorldSceneAR extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <ViroNode position={[0, 0, -1]} dragType='FixedToWorld' onDrag={() => {}}>
-          {/* <Viro3DObject
-            source={require('./res/emoji_smile/emoji_smile.vrx')}
-            resources={[
-              require('./res/emoji_smile/emoji_smile_diffuse.png'),
-              require('./res/emoji_smile/emoji_smile_normal.png'),
-              require('./res/emoji_smile/emoji_smile_specular.png'),
-            ]}
-            position={[0, 0.5, 0]}
-            scale={[0.2, 0.2, 0.2]}
-            type='VRX'
-          /> */}
           <Viro3DObject
             source={require('./look7/jacket.vrx')}
             position={[0, -1, -1]}
@@ -59,7 +48,7 @@ export default class HelloWorldSceneAR extends Component {
             onLoadStart={this._onLoadStart}
             onLoadEnd={this._onLoadEnd}
             onError={this._onError}
-            materials={['buttonhole', 'cowhide']}
+            materials={['buttonhole', 'cowhide', 'cowhide', 'cowhide', 'cowhide']}
             animation={{ name: 'rotate', run: true, loop: true }}
           />
           <ViroOmniLight
@@ -179,6 +168,7 @@ ViroMaterials.createMaterials({
   cowhide: {
     lightingModel: 'PBR',
     shininess: 100.0,
+    metalness: 1.0,
     diffuseTexture: require('./look7/cowhide1.jpg'),
     specularTexture: require('./look7/cowhide1.jpg'),
   },

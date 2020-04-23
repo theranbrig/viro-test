@@ -1,24 +1,23 @@
 'use strict';
 
+import { Button, StyleSheet } from 'react-native';
 import React, { Component } from 'react';
 import {
   Viro3DObject,
   ViroARPlaneSelector,
   ViroARScene,
   ViroAmbientLight,
+  ViroAnimations,
   ViroBox,
+  ViroButton,
   ViroConstants,
+  ViroDirectionalLight,
   ViroMaterials,
   ViroNode,
-  ViroSpotLight,
   ViroOmniLight,
+  ViroSpotLight,
   ViroText,
-  ViroButton,
-  ViroDirectionalLight,
-  ViroAnimations,
 } from 'react-viro';
-
-import { StyleSheet, Button } from 'react-native';
 
 export default class HelloWorldSceneAR extends Component {
   constructor(props) {
@@ -39,59 +38,80 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <ViroNode position={[0, 0, -1]} dragType='FixedToWorld' onDrag={() => {}}>
-          <Viro3DObject
-            source={require('./look7/jacket.vrx')}
-            position={[0, -1, -1]}
-            scale={[0.001, 0.001, 0.001]}
-            type='VRX'
-            onLoadStart={this._onLoadStart}
-            onLoadEnd={this._onLoadEnd}
-            onError={this._onError}
-            materials={['buttonhole', 'cowhide', 'cowhide', 'cowhide', 'cowhide']}
-            animation={{ name: 'rotate', run: true, loop: true }}
-          />
-          <ViroOmniLight
+        <Viro3DObject
+          source={require('./look7/jacket.vrx')}
+          position={[0, -1, -1]}
+          scale={[0.001, 0.001, 0.001]}
+          type='VRX'
+          onLoadStart={this._onLoadStart}
+          onLoadEnd={this._onLoadEnd}
+          onError={this._onError}
+          materials={['silk1', 'buttonhole', 'silk2', 'cowhide1']}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <ViroSpotLight
+          ref={(component) => {
+            this.spotLight = component;
+          }}
+          intensity={1000}
+          innerAngle={5}
+          outerAngle={20}
+          attenuationStartDistance={0.1}
+          attenuationEndDistance={22}
+          direction={[0, -1, 0]}
+          position={[0, 1, 0]}
+          color='#ffffff'
+          castsShadow={true}
+          shadowNearZ={0.1}
+          shadowOpacity={0.9}
+        />
+        <ViroOmniLight
+          intensity={1000}
+          position={[-5, 5, 1]}
+          color={'#FFFFFF'}
+          attenuationStartDistance={20}
+          attenuationEndDistance={30}
+        />
+        {/* <ViroOmniLight
             intensity={1000}
-            position={[-10, 20, 1]}
+            position={[5, 5, 1]}
             color={'#FFFFFF'}
             attenuationStartDistance={20}
             attenuationEndDistance={30}
           />
           <ViroOmniLight
             intensity={1000}
-            position={[10, 20, 1]}
+            position={[-5, -5, 1]}
             color={'#FFFFFF'}
             attenuationStartDistance={20}
             attenuationEndDistance={30}
           />
           <ViroOmniLight
             intensity={1000}
-            position={[-10, -10, 1]}
+            position={[5, -5, 1]}
             color={'#FFFFFF'}
             attenuationStartDistance={20}
             attenuationEndDistance={30}
-          />
-          <ViroOmniLight
-            intensity={1000}
-            position={[10, -10, 1]}
-            color={'#FFFFFF'}
-            attenuationStartDistance={20}
-            attenuationEndDistance={30}
-          />
-        </ViroNode>
+          /> */}
 
+        <ViroAmbientLight color='#FFFFFF' />
         <ViroBox
           position={[0, 0, -1.5]}
           scale={[0.3, 0.3, 0.1]}
-          materials={['cowhide']}
+          materials={['cowhide1']}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <ViroBox
+          position={[0, 0.5, -1]}
+          scale={[0.3, 0.3, 0.1]}
+          materials={['silk2']}
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         {this.props.showText && (
           <ViroText
             text={this.state.text}
             scale={[0.1, 0.1, 0.1]}
-            position={[0, 0, -1]}
+            position={[0, , -1]}
             style={styles.helloWorldTextStyle}
           />
         )}
@@ -159,18 +179,30 @@ var styles = StyleSheet.create({
 });
 
 ViroMaterials.createMaterials({
+  silk1: {
+    lightingModel: 'Lambert',
+    diffuseTexture: require('./look7/silk1.jpg'),
+  },
   buttonhole: {
     lightingModel: 'PBR',
-    shininess: 4.0,
-    normalTexture: require('./look7/buttonhole.jpg'),
-    diffuseTexture: require('./look7/2.3cm_Edit.png'),
+    shininess: 5.0,
+    metalness: 2.0,
+    diffuseTexture: require('./look7/buttonhole.jpg'),
+    specularTexture: require('./look7/2.3cm_Edit.png'),
   },
-  cowhide: {
+  silk2: {
     lightingModel: 'PBR',
-    shininess: 100.0,
-    metalness: 1.0,
+    shininess: 20.0,
+    diffuseTexture: require('./look7/silk2.jpg'),
+    specularTexture: require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+    normalTexture: require('./look7/FCL1-PSS003-00_NORMAL.png'),
+  },
+  cowhide1: {
+    lightingModel: 'PBR',
+    shininess: 5.0,
+    metalness: 2.0,
     diffuseTexture: require('./look7/cowhide1.jpg'),
-    specularTexture: require('./look7/cowhide1.jpg'),
+    specularTexture: require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
   },
 });
 

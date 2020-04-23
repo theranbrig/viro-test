@@ -49,16 +49,6 @@ export default class HelloWorldSceneAR extends Component {
           onError={this._onError}
           materials={['silk1', 'buttonhole', 'silk2', 'cowhide1']}
           animation={{ name: 'rotate', run: true, loop: true }}
-          resources={[
-            require('./look7/silk1.jpg'),
-            require('./look7/buttonhole.jpg'),
-            require('./look7/2.3cm_Edit.png'),
-            require('./look7/silk2.jpg'),
-            require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-            require('./look7/FCL1-PSS003-00_NORMAL.png'),
-            require('./look7/cowhide1.jpg'),
-            require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
-          ]}
         /> */}
         {/* <Viro3DObject
           source={require('./look6obj/march12_obj_look6_v5.obj')}
@@ -197,6 +187,9 @@ var styles = StyleSheet.create({
     borderRadius: 10,
     color: 'red',
   },
+});
+
+ViroMaterials.createMaterials({
   //    Primitive count for material 0: 37452"
   //    Lambert material"
   //       Opacity set to 1.000000"
@@ -220,9 +213,6 @@ var styles = StyleSheet.create({
   //    Primitive count for material 4: 17844"
   //    Lambert material"
   //       Opacity set to 1.000000"
-});
-
-ViroMaterials.createMaterials({
   silk1: {
     lightingModel: 'Lambert',
     diffuseTexture: require('./look7/silk1.jpg'),
@@ -243,10 +233,10 @@ ViroMaterials.createMaterials({
   },
   cowhide1: {
     lightingModel: 'Phong',
-    shininess: 100.0,
 
-    diffuseTexture: require('./look7/cowhide1.jpg'),
+    // diffuseTexture: require('./look7/cowhide1.jpg'),
     specularTexture: require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
+    diffuseTexture: require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
   },
 });
 

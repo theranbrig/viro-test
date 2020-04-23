@@ -15,6 +15,7 @@ import {
   ViroMaterials,
   ViroNode,
   ViroOmniLight,
+  ViroSphere,
   ViroSpotLight,
   ViroText,
 } from 'react-viro';
@@ -38,7 +39,7 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <Viro3DObject
+        {/* <Viro3DObject
           source={require('./look7/jacket.vrx')}
           position={[0, -1, -1]}
           scale={[0.001, 0.001, 0.001]}
@@ -48,7 +49,41 @@ export default class HelloWorldSceneAR extends Component {
           onError={this._onError}
           materials={['silk1', 'buttonhole', 'silk2', 'cowhide1']}
           animation={{ name: 'rotate', run: true, loop: true }}
-        />
+          resources={[
+            require('./look7/silk1.jpg'),
+            require('./look7/buttonhole.jpg'),
+            require('./look7/2.3cm_Edit.png'),
+            require('./look7/silk2.jpg'),
+            require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+            require('./look7/FCL1-PSS003-00_NORMAL.png'),
+            require('./look7/cowhide1.jpg'),
+            require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
+          ]}
+        /> */}
+        {/* <Viro3DObject
+          source={require('./look6obj/march12_obj_look6_v5.obj')}
+          resources={[
+            require('./look6obj/march12_obj_look6_v5.mtl'),
+            require('./look6obj/2.3cm_Edit.jpg'),
+            require('./look6obj/2.3cm_Edit.png'),
+            require('./look6obj/FCL1-PSS003-00_DIFFUSE.jpg'),
+            require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+            require('./look6obj/FCL1-PSS003-00_NORMAL.png'),
+            require('./look6obj/FCL2-PSL002-00.png'),
+            require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
+            require('./look6obj/march12_fbx_look6_v5.fbm/2.3cm_Edit.jpg'),
+            require('./look6obj/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_NORMAL.png'),
+            require('./look6obj/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
+            require('./look6obj/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+          ]}
+          position={[0, -1, -1]}
+          scale={[0.0001, 0.0001, 0.0001]}
+          type='OBJ'
+          onLoadStart={this._onLoadStart}
+          onLoadEnd={this._onLoadEnd}
+          onError={this._onError}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        /> */}
         <ViroSpotLight
           ref={(component) => {
             this.spotLight = component;
@@ -104,7 +139,16 @@ export default class HelloWorldSceneAR extends Component {
         <ViroBox
           position={[0, 0.5, -1]}
           scale={[0.3, 0.3, 0.1]}
-          materials={['silk2']}
+          materials={['cowhide1']}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <ViroSphere
+          heightSegmentCount={20}
+          widthSegmentCount={20}
+          radius={2}
+          scale={[0.1, 0.1, 0.1]}
+          position={[0, -0.5, -2]}
+          materials={['cowhide1']}
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         {this.props.showText && (
@@ -184,23 +228,23 @@ ViroMaterials.createMaterials({
     diffuseTexture: require('./look7/silk1.jpg'),
   },
   buttonhole: {
-    lightingModel: 'PBR',
+    lightingModel: 'Phong',
     shininess: 5.0,
-    metalness: 2.0,
+
     diffuseTexture: require('./look7/buttonhole.jpg'),
     specularTexture: require('./look7/2.3cm_Edit.png'),
   },
   silk2: {
-    lightingModel: 'PBR',
+    lightingModel: 'Phong',
     shininess: 20.0,
     diffuseTexture: require('./look7/silk2.jpg'),
     specularTexture: require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
     normalTexture: require('./look7/FCL1-PSS003-00_NORMAL.png'),
   },
   cowhide1: {
-    lightingModel: 'PBR',
-    shininess: 5.0,
-    metalness: 2.0,
+    lightingModel: 'Phong',
+    shininess: 100.0,
+
     diffuseTexture: require('./look7/cowhide1.jpg'),
     specularTexture: require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
   },

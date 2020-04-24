@@ -40,40 +40,29 @@ export default class HelloWorldSceneAR extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         {/* <Viro3DObject
-          source={require('./look7/jacket.vrx')}
-          position={[0, -1, -1]}
-          scale={[0.001, 0.001, 0.001]}
-          type='VRX'
-          onLoadStart={this._onLoadStart}
-          onLoadEnd={this._onLoadEnd}
-          onError={this._onError}
-          materials={['silk1', 'buttonhole', 'silk2', 'cowhide1']}
-          animation={{ name: 'rotate', run: true, loop: true }}
-        /> */}
-        {/* <Viro3DObject
-          source={require('./look6obj/march12_obj_look6_v5.obj')}
+          source={require('./res/emoji_smile/emoji_smile.vrx')}
           resources={[
-            require('./look6obj/march12_obj_look6_v5.mtl'),
-            require('./look6obj/2.3cm_Edit.jpg'),
-            require('./look6obj/2.3cm_Edit.png'),
-            require('./look6obj/FCL1-PSS003-00_DIFFUSE.jpg'),
-            require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-            require('./look6obj/FCL1-PSS003-00_NORMAL.png'),
-            require('./look6obj/FCL2-PSL002-00.png'),
-            require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
-            require('./look6obj/march12_fbx_look6_v5.fbm/2.3cm_Edit.jpg'),
-            require('./look6obj/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_NORMAL.png'),
-            require('./look6obj/march12_fbx_look6_v5.fbm/FCL2-PSL002-00_brownbaby.jpg'),
-            require('./look6obj/march12_fbx_look6_v5.fbm/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+            require('./res/emoji_smile/emoji_smile_diffuse.png'),
+            require('./res/emoji_smile/emoji_smile_normal.png'),
+            require('./res/emoji_smile/emoji_smile_specular.png'),
           ]}
+          position={[0, 0.5, 0]}
+          scale={[0.2, 0.2, 0.2]}
+          type='VRX'
+          materials={['cowhide1']}
+        /> */}
+        <Viro3DObject
+          source={require('./look6obj/march12_obj_look6_v5_simplified.obj')}
+          resources={[require('./look6obj/march12_obj_look6_v5_simplified.mtl')]}
           position={[0, -1, -1]}
           scale={[0.0001, 0.0001, 0.0001]}
           type='OBJ'
           onLoadStart={this._onLoadStart}
           onLoadEnd={this._onLoadEnd}
           onError={this._onError}
+          materials={['silk1', 'buttonhole', 'silk2', 'cowhide1', 'material']}
           animation={{ name: 'rotate', run: true, loop: true }}
-        /> */}
+        />
         <ViroSpotLight
           ref={(component) => {
             this.spotLight = component;
@@ -215,28 +204,29 @@ ViroMaterials.createMaterials({
   //       Opacity set to 1.000000"
   silk1: {
     lightingModel: 'Lambert',
-    diffuseTexture: require('./look7/silk1.jpg'),
+    diffuseTexture: require('./look6obj/silk1.jpg'),
   },
   buttonhole: {
     lightingModel: 'Phong',
     shininess: 5.0,
-
-    diffuseTexture: require('./look7/buttonhole.jpg'),
-    specularTexture: require('./look7/2.3cm_Edit.png'),
+    diffuseTexture: require('./look6obj/buttonhole.jpg'),
+    specularTexture: require('./look6obj/2.3cm_Edit.png'),
   },
   silk2: {
     lightingModel: 'Phong',
-    shininess: 20.0,
-    diffuseTexture: require('./look7/silk2.jpg'),
-    specularTexture: require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-    normalTexture: require('./look7/FCL1-PSS003-00_NORMAL.png'),
+    shininess: 4.0,
+    diffuseTexture: require('./look6obj/silk2.jpg'),
+    specularTexture: require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
   },
   cowhide1: {
     lightingModel: 'Phong',
-
-    // diffuseTexture: require('./look7/cowhide1.jpg'),
-    specularTexture: require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
-    diffuseTexture: require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
+    shininess: 20.0,
+    diffuseTexture: require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
+    // specularTexture: require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
+    specularTexture: require('./look6obj/FCL2-PSL002-00.png'),
+  },
+  material: {
+    diffuseColor: '#634322',
   },
 });
 

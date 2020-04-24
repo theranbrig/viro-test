@@ -21,12 +21,13 @@ import {
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     // Set initial state here
     this.state = {
       text: 'Initializing AR...',
+      normal: true,
     };
 
     // bind 'this' to functions
@@ -51,7 +52,7 @@ export default class HelloWorldSceneAR extends Component {
           type='VRX'
           materials={['cowhide1']}
         /> */}
-        <Viro3DObject
+        {/* <Viro3DObject
           source={require('./look7/jacket.vrx')}
           // resources={[
           //   require('./look7/2.3cm_Edit.jpg'),
@@ -73,29 +74,33 @@ export default class HelloWorldSceneAR extends Component {
           onLoadEnd={this._onLoadEnd}
           onError={this._onError}
           animation={{ name: 'rotate', run: true, loop: true }}
-        />
+        /> */}
         <Viro3DObject
           source={require('./look6obj/march12_obj_look6_v5_simplified.obj')}
-          // resources={[
-          //   require('./look6obj/march12_obj_look6_v5_simplified.mtl'),
-          //   require('./look6obj/2.3cm_Edit.jpg'),
-          //   require('./look6obj/2.3cm_Edit.png'),
-          //   require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-          //   require('./look6obj/FCL1-PSS003-00_DIFFUSE.jpg'),
-          //   require('./look6obj/FCL1-PSS003-00_NORMAL.png'),
-          //   require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
-          //   require('./look6obj/FCL2-PSL002-00.png'),
-          //   require('./look6obj/silk1.jpg'),
-          //   require('./look6obj/silk2.jpg'),
-          //   require('./look6obj/cowhide1.jpg'),
-          // ]}
-          position={[1, -1, -1]}
+          resources={[
+            require('./look6obj/march12_obj_look6_v5_simplified.mtl'),
+            //   require('./look6obj/2.3cm_Edit.jpg'),
+            //   require('./look6obj/2.3cm_Edit.png'),
+            //   require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+            //   require('./look6obj/FCL1-PSS003-00_DIFFUSE.jpg'),
+            //   require('./look6obj/FCL1-PSS003-00_NORMAL.png'),
+            //   require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
+            //   require('./look6obj/FCL2-PSL002-00.png'),
+            //   require('./look6obj/silk1.jpg'),
+            //   require('./look6obj/silk2.jpg'),
+            //   require('./look6obj/cowhide1.jpg'),
+          ]}
+          position={[0, -1, -1]}
           scale={[0.000075, 0.000075, 0.000075]}
           type='OBJ'
           onLoadStart={this._onLoadStart}
           onLoadEnd={this._onLoadEnd}
           onError={this._onError}
-          materials={['silk1', 'buttonhole', 'silk2', 'cowhide1', 'material']}
+          materials={
+            this.state.normal
+              ? ['silk1', 'buttonhole', 'silk2', 'cowhide1', 'material']
+              : ['silk1', 'buttonhole', 'cowhide1', 'silk2', 'material']
+          }
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         <ViroSpotLight
@@ -155,17 +160,17 @@ export default class HelloWorldSceneAR extends Component {
           scale={[0.3, 0.3, 0.1]}
           materials={['cowhide1']}
           animation={{ name: 'rotate', run: true, loop: true }}
-        />
-        <ViroSphere
+        /> */}
+        {/* <ViroSphere
           heightSegmentCount={20}
           widthSegmentCount={20}
           radius={2}
           scale={[0.1, 0.1, 0.1]}
-          position={[0, -0.5, -2]}
-          materials={['cowhide1']}
+          position={[1, -0.5, -2]}
+          materials={['grid']}
           animation={{ name: 'rotate', run: true, loop: true }}
-        />
-        {this.props.showText && (
+        /> */}
+        {/*{this.props.showText && (
           <ViroText
             text={this.state.text}
             scale={[0.1, 0.1, 0.1]}
@@ -191,6 +196,9 @@ export default class HelloWorldSceneAR extends Component {
   }
   _onLoadEnd() {
     console.log('OBJ loading has finished');
+    setTimeout(() => {
+      this.setState({ normal: false });
+    }, 5000);
   }
   _onError(event) {
     console.log('OBJ loading failed with error: ' + event.nativeEvent.error);
@@ -237,6 +245,9 @@ ViroMaterials.createMaterials({
   //    Primitive count for material 4: 17844"
   //    Lambert material"
   //       Opacity set to 1.000000"
+  grid: {
+    diffuseTexture: require('./res/grid_bg.jpg'),
+  },
   silk1: {
     lightingModel: 'Lambert',
     diffuseTexture: require('./look6obj/silk1.jpg'),
@@ -256,10 +267,7 @@ ViroMaterials.createMaterials({
   cowhide1: {
     lightingModel: 'Phong',
     shininess: 200.0,
-    // metalness: 2.9,
     diffuseTexture: require('./look6obj/cowhide1.jpg'),
-    // diffuseTexture: require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
-    // specularTexture: require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
     specularTexture: require('./look6obj/FCL2-PSL002-00.png'),
   },
   material: {

@@ -7,19 +7,18 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-import React, { Component } from 'react';
 import {
   AppRegistry,
-  Text,
-  View,
-  StyleSheet,
-  PixelRatio,
-  TouchableHighlight,
   Button,
   Image,
+  PixelRatio,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
 } from 'react-native';
-
-import { ViroVRSceneNavigator, ViroARSceneNavigator } from 'react-viro';
+import React, { Component } from 'react';
+import { ViroARSceneNavigator, ViroVRSceneNavigator } from 'react-viro';
 
 /*
  TODO: Insert your API key below
@@ -101,7 +100,6 @@ export default class ViroSample extends Component {
         <ViroARSceneNavigator
           {...this.state.sharedProps}
           initialScene={{ scene: InitialARScene }}
-          showText={this.state.showText}
         />
         <View
           style={{ position: 'absolute', left: -50, right: 0, bottom: 90, alignItems: 'center' }}>

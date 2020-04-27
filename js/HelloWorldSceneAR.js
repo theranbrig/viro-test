@@ -40,18 +40,19 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        {/* <Viro3DObject
-          source={require('./res/emoji_smile/emoji_smile.vrx')}
+        <Viro3DObject
+          source={require('./res/phongFBX/april27_fbx_look6_phong.vrx')}
           resources={[
-            require('./res/emoji_smile/emoji_smile_diffuse.png'),
-            require('./res/emoji_smile/emoji_smile_normal.png'),
-            require('./res/emoji_smile/emoji_smile_specular.png'),
+            require('./res/phongFBX/april27_fbx_look6_phong.fbm/buttonhole.jpg'),
+            require('./res/phongFBX/april27_fbx_look6_phong.fbm/cowhide1.jpg'),
+            require('./res/phongFBX/april27_fbx_look6_phong.fbm/silk1.jpg'),
+            require('./res/phongFBX/april27_fbx_look6_phong.fbm/silk2.jpg'),
           ]}
-          position={[0, 0.5, 0]}
-          scale={[0.2, 0.2, 0.2]}
+          position={[0, -0.5, -1]}
+          scale={[0.001, 0.001, 0.001]}
           type='VRX'
-          materials={['cowhide1']}
-        /> */}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
         {/* <Viro3DObject
           source={require('./look7/march12_fbx_look6_v6_simplified.vrx')}
           resources={[
@@ -81,6 +82,7 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 0.75, -1]}
           scale={[0.01, 0.01, 0.01]}
           type='OBJ'
+          materials={['pbr']}
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         <Viro3DObject
@@ -89,6 +91,7 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 0.5, -1]}
           scale={[0.01, 0.01, 0.01]}
           type='OBJ'
+          materials={['constant']}
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         <Viro3DObject
@@ -97,6 +100,7 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 0.25, -1]}
           scale={[0.01, 0.01, 0.01]}
           type='OBJ'
+          materials={['lambert']}
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         <Viro3DObject
@@ -105,6 +109,7 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 0, -1]}
           scale={[0.01, 0.01, 0.01]}
           type='OBJ'
+          materials={['phong']}
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         <Viro3DObject
@@ -201,35 +206,6 @@ export default class HelloWorldSceneAR extends Component {
         />
 
         <ViroAmbientLight color='#FFFFFF' />
-        {/* <ViroBox
-          position={[0, 0, -1.5]}
-          scale={[0.3, 0.3, 0.1]}
-          materials={['cowhide1']}
-          animation={{ name: 'rotate', run: true, loop: true }}
-        />
-        <ViroBox
-          position={[0, 0.5, -1]}
-          scale={[0.3, 0.3, 0.1]}
-          materials={['cowhide1']}
-          animation={{ name: 'rotate', run: true, loop: true }}
-        />
-        {/* <ViroSphere
-          heightSegmentCount={20}
-          widthSegmentCount={20}
-          radius={2}
-          scale={[0.1, 0.1, 0.1]}
-          position={[1, -0.5, -2]}
-          materials={['grid']}
-          animation={{ name: 'rotate', run: true, loop: true }}
-        /> */}
-        {/*{this.props.showText && (
-          <ViroText
-            text={this.state.text}
-            scale={[0.1, 0.1, 0.1]}
-            position={[0, , -1]}
-            style={styles.helloWorldTextStyle}
-          />
-        )} */}
       </ViroARScene>
     );
   }
@@ -306,25 +282,45 @@ ViroMaterials.createMaterials({
     diffuseTexture: require('./look6obj/silk1.jpg'),
   },
   buttonhole: {
-    lightingModel: 'Lambert',
+    lightingModel: 'Phong',
     shininess: 5.0,
     diffuseTexture: require('./look6obj/buttonhole.jpg'),
     specularTexture: require('./look6obj/2.3cm_Edit.png'),
   },
   silk2: {
-    lightingModel: 'Lambert',
+    lightingModel: 'Phong',
     shininess: 4.0,
     diffuseTexture: require('./look6obj/silk2.jpg'),
     specularTexture: require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
   },
   cowhide1: {
-    lightingModel: 'Lambert',
+    lightingModel: 'Phong',
     shininess: 200.0,
     diffuseTexture: require('./look6obj/cowhide1.jpg'),
     specularTexture: require('./look6obj/FCL2-PSL002-00.png'),
   },
   material: {
     diffuseColor: '#634322',
+  },
+  lambert: {
+    lightingModel: 'Lambert',
+
+    diffuseTexture: require('./res/brick_spheres/brick_sphere_cgx_metal.fbm/brick_tex.jpg'),
+  },
+  phong: {
+    lightingModel: 'Phong',
+
+    diffuseTexture: require('./res/brick_spheres/brick_sphere_cgx_metal.fbm/brick_tex.jpg'),
+  },
+  pbr: {
+    lightingModel: 'PBR',
+
+    diffuseTexture: require('./res/brick_spheres/brick_sphere_cgx_metal.fbm/brick_tex.jpg'),
+  },
+  constant: {
+    lightingModel: 'Constant',
+
+    diffuseTexture: require('./res/brick_spheres/brick_sphere_cgx_metal.fbm/brick_tex.jpg'),
   },
 });
 

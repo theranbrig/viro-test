@@ -52,21 +52,21 @@ export default class HelloWorldSceneAR extends Component {
           type='VRX'
           materials={['cowhide1']}
         /> */}
-        {/* <Viro3DObject
-          source={require('./look7/jacket.vrx')}
-          // resources={[
-          //   require('./look7/2.3cm_Edit.jpg'),
-          //   require('./look7/2.3cm_Edit.png'),
-          //   require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-          //   require('./look7/FCL1-PSS003-00_NORMAL.png'),
-          //   require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
-          //   require('./look7/silk1.jpg'),
-          //   require('./look7/silk1Diffuse.jpg'),
-          //   require('./look7/silk2.jpg'),
-          //   require('./look7/cowhide1.jpg'),
-          //   require('./look7/cowhide1Diffuse.png'),
-          // ]}
-          position={[0, -1, -1]}
+        <Viro3DObject
+          source={require('./look7/march12_fbx_look6_v6_simplified.vrx')}
+          resources={[
+            require('./look7/2.3cm_Edit.jpg'),
+            require('./look7/2.3cm_Edit.png'),
+            require('./look7/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
+            require('./look7/FCL1-PSS003-00_NORMAL.png'),
+            require('./look7/FCL2-PSL002-00_brownbaby.jpg'),
+            require('./look7/silk1.jpg'),
+            require('./look7/silk1Diffuse.jpg'),
+            require('./look7/silk2.jpg'),
+            require('./look7/cowhide1.jpg'),
+            require('./look7/cowhide1Diffuse.png'),
+          ]}
+          position={[0.1, 0.1, 0.1]}
           scale={[0.001, 0.001, 0.001]}
           type='VRX'
           materials={['silk1', 'buttonhole', 'silk2', 'cowhide1', 'material']}
@@ -74,11 +74,11 @@ export default class HelloWorldSceneAR extends Component {
           onLoadEnd={this._onLoadEnd}
           onError={this._onError}
           animation={{ name: 'rotate', run: true, loop: true }}
-        /> */}
-        <Viro3DObject
-          source={require('./look6obj/march12_obj_look6_v5_simplified.obj')}
+        />
+        {/* <Viro3DObject
+          source={require('./look6obj/april24_obj_v1.obj')}
           resources={[
-            require('./look6obj/march12_obj_look6_v5_simplified.mtl'),
+            require('./look6obj/april24_obj_v1.mtl'),
             //   require('./look6obj/2.3cm_Edit.jpg'),
             //   require('./look6obj/2.3cm_Edit.png'),
             //   require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
@@ -102,7 +102,7 @@ export default class HelloWorldSceneAR extends Component {
               : ['silk1', 'buttonhole', 'cowhide1', 'silk2', 'material']
           }
           animation={{ name: 'rotate', run: true, loop: true }}
-        />
+        /> */}
         <ViroSpotLight
           ref={(component) => {
             this.spotLight = component;
@@ -160,7 +160,7 @@ export default class HelloWorldSceneAR extends Component {
           scale={[0.3, 0.3, 0.1]}
           materials={['cowhide1']}
           animation={{ name: 'rotate', run: true, loop: true }}
-        /> */}
+        />
         {/* <ViroSphere
           heightSegmentCount={20}
           widthSegmentCount={20}
@@ -195,6 +195,7 @@ export default class HelloWorldSceneAR extends Component {
     console.log('OBJ loading has started');
   }
   _onLoadEnd() {
+    // Changes state of model for test
     console.log('OBJ loading has finished');
     setTimeout(() => {
       this.setState({ normal: false });
@@ -253,19 +254,19 @@ ViroMaterials.createMaterials({
     diffuseTexture: require('./look6obj/silk1.jpg'),
   },
   buttonhole: {
-    lightingModel: 'Phong',
+    lightingModel: 'Lambert',
     shininess: 5.0,
     diffuseTexture: require('./look6obj/buttonhole.jpg'),
     specularTexture: require('./look6obj/2.3cm_Edit.png'),
   },
   silk2: {
-    lightingModel: 'Phong',
+    lightingModel: 'Lambert',
     shininess: 4.0,
     diffuseTexture: require('./look6obj/silk2.jpg'),
     specularTexture: require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
   },
   cowhide1: {
-    lightingModel: 'Phong',
+    lightingModel: 'Lambert',
     shininess: 200.0,
     diffuseTexture: require('./look6obj/cowhide1.jpg'),
     specularTexture: require('./look6obj/FCL2-PSL002-00.png'),

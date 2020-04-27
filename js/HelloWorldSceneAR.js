@@ -52,7 +52,7 @@ export default class HelloWorldSceneAR extends Component {
           type='VRX'
           materials={['cowhide1']}
         /> */}
-        <Viro3DObject
+        {/* <Viro3DObject
           source={require('./look7/march12_fbx_look6_v6_simplified.vrx')}
           resources={[
             require('./look7/2.3cm_Edit.jpg'),
@@ -74,33 +74,85 @@ export default class HelloWorldSceneAR extends Component {
           onLoadEnd={this._onLoadEnd}
           onError={this._onError}
           animation={{ name: 'rotate', run: true, loop: true }}
+        /> */}
+        <Viro3DObject
+          source={require('./res/test_spheres_theran/sphere_cgx_metal.obj')}
+          resources={[require('./res/test_spheres_theran/sphere_cgx_metal.mtl')]}
+          position={[0, 0.75, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='OBJ'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/test_spheres_theran/sphere_lambertian_diffuse.obj')}
+          resources={[require('./res/test_spheres_theran/sphere_lambertian_diffuse.mtl')]}
+          position={[0, 0.5, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='OBJ'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/test_spheres_theran/sphere_lambertian_metal.obj')}
+          resources={[require('./res/test_spheres_theran/sphere_lambertian_metal.mtl')]}
+          position={[0, 0.25, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='OBJ'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/test_spheres_theran/sphere_phong_metal.obj')}
+          resources={[require('./res/test_spheres_theran/sphere_phong_metal.mtl')]}
+          position={[0, 0, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='OBJ'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/brick_spheres/brick_sphere_cgx_metal.vrx')}
+          resources={[require('./res/brick_spheres/brick_sphere_cgx_metal.fbm/brick_tex.jpg')]}
+          position={[0.5, 0.75, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='VRX'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/brick_spheres/brick_sphere_lambertian_diffuse.vrx')}
+          resources={[
+            require('./res/brick_spheres/brick_sphere_lambertian_diffuse.fbm/brick_tex.jpg'),
+          ]}
+          position={[0.5, 0.25, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='VRX'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/brick_spheres/brick_sphere_lambertian_metal.vrx')}
+          resources={[
+            require('./res/brick_spheres/brick_sphere_lambertian_metal.fbm/brick_tex.jpg'),
+          ]}
+          position={[0.5, 0.5, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='VRX'
+          animation={{ name: 'rotate', run: true, loop: true }}
+        />
+        <Viro3DObject
+          source={require('./res/brick_spheres/brick_sphere_phong_metal.vrx')}
+          resources={[require('./res/brick_spheres/brick_sphere_phong_metal.fbm/brick_tex.jpg')]}
+          position={[0.5, 0.0, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='VRX'
+          animation={{ name: 'rotate', run: true, loop: true }}
         />
         {/* <Viro3DObject
           source={require('./look6obj/april24_obj_v1.obj')}
-          resources={[
-            require('./look6obj/april24_obj_v1.mtl'),
-            //   require('./look6obj/2.3cm_Edit.jpg'),
-            //   require('./look6obj/2.3cm_Edit.png'),
-            //   require('./look6obj/FCL1-PSS003-00_DIFFUSE_redred.jpg'),
-            //   require('./look6obj/FCL1-PSS003-00_DIFFUSE.jpg'),
-            //   require('./look6obj/FCL1-PSS003-00_NORMAL.png'),
-            //   require('./look6obj/FCL2-PSL002-00_brownbaby.jpg'),
-            //   require('./look6obj/FCL2-PSL002-00.png'),
-            //   require('./look6obj/silk1.jpg'),
-            //   require('./look6obj/silk2.jpg'),
-            //   require('./look6obj/cowhide1.jpg'),
-          ]}
+          resources={[require('./look6obj/april24_obj_v1.mtl')]}
           position={[0, -1, -1]}
           scale={[0.000075, 0.000075, 0.000075]}
           type='OBJ'
           onLoadStart={this._onLoadStart}
           onLoadEnd={this._onLoadEnd}
           onError={this._onError}
-          materials={
-            this.state.normal
-              ? ['silk1', 'buttonhole', 'silk2', 'cowhide1', 'material']
-              : ['silk1', 'buttonhole', 'cowhide1', 'silk2', 'material']
-          }
+          materials={['silk1', 'buttonhole', 'silk2', 'cowhide1', 'material']}
           animation={{ name: 'rotate', run: true, loop: true }}
         /> */}
         <ViroSpotLight

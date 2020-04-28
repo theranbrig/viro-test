@@ -40,17 +40,20 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <Viro3DObject
-          source={require('./res/april_27_adjusted/april27_adjustments_fbx_v1.vrx')}
-          resources={[
-            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/buttonhole.jpg'),
-            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/cowhide1.jpg'),
-            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/silk1.jpg'),
-            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/silk2.jpg'),
-          ]}
+        {/* <Viro3DObject
+          source={require('./res/april_27_adjusted/april27_adjustments_obj_v1.obj')}
+          resources={[require('./res/april_27_adjusted/april27_adjustments_obj_v1.mtl')]}
           position={[0, -0.5, -1]}
           scale={[0.001, 0.001, 0.001]}
-          type='VRX'
+          type='OBJ'
+          materials={'cowhide1'}
+          animation={{ name: 'rotate', run: true, loop: true }}
+        /> */}
+        <Viro3DObject
+          source={require('./res/april_27_adjusted/march12_gltf_look6_v4.gltf')}
+          position={[0, -0.5, -1]}
+          scale={[0.01, 0.01, 0.01]}
+          type='GLTF'
           animation={{ name: 'rotate', run: true, loop: true }}
         />
         {/* <Viro3DObject

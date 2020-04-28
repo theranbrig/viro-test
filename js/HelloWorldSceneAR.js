@@ -41,12 +41,12 @@ export default class HelloWorldSceneAR extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
         <Viro3DObject
-          source={require('./res/phongFBX/april27_fbx_look6_phong.vrx')}
+          source={require('./res/april_27_adjusted/april27_adjustments_fbx_v1.vrx')}
           resources={[
-            require('./res/phongFBX/april27_fbx_look6_phong.fbm/buttonhole.jpg'),
-            require('./res/phongFBX/april27_fbx_look6_phong.fbm/cowhide1.jpg'),
-            require('./res/phongFBX/april27_fbx_look6_phong.fbm/silk1.jpg'),
-            require('./res/phongFBX/april27_fbx_look6_phong.fbm/silk2.jpg'),
+            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/buttonhole.jpg'),
+            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/cowhide1.jpg'),
+            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/silk1.jpg'),
+            require('./res/april_27_adjusted/april27_adjustments_fbx_v1.fbm/silk2.jpg'),
           ]}
           position={[0, -0.5, -1]}
           scale={[0.001, 0.001, 0.001]}
@@ -76,7 +76,7 @@ export default class HelloWorldSceneAR extends Component {
           onError={this._onError}
           animation={{ name: 'rotate', run: true, loop: true }}
         /> */}
-        <Viro3DObject
+        {/* <Viro3DObject
           source={require('./res/test_spheres_theran/sphere_cgx_metal.obj')}
           resources={[require('./res/test_spheres_theran/sphere_cgx_metal.mtl')]}
           position={[0, 0.75, -1]}
@@ -147,7 +147,7 @@ export default class HelloWorldSceneAR extends Component {
           scale={[0.01, 0.01, 0.01]}
           type='VRX'
           animation={{ name: 'rotate', run: true, loop: true }}
-        />
+        /> */}
         {/* <Viro3DObject
           source={require('./look6obj/april24_obj_v1.obj')}
           resources={[require('./look6obj/april24_obj_v1.mtl')]}
